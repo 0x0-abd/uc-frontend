@@ -32,7 +32,7 @@ export function Navbar({ user, setUser }: { user: LoggedInUserData | undefined, 
     } catch (e) {
       console.log(e)
     }
-    setUser()
+    setUser(undefined)
     navigate("/")
   }
 

@@ -20,7 +20,7 @@ function App() {
       <div className='h-screen w-full'>
       <Navbar user={user} setUser={setUser}/>
       <Routes >
-        <Route path="/" element={<LoginPage setUser={setUser} />} errorElement={<ErrorPage />} />
+        <Route path="/" element={<LoginPage setUser={setUser} user={user} />} errorElement={<ErrorPage />} />
         <Route path="/signup" element={<RegisterPage setUser={setUser} />} errorElement={<ErrorPage />} />
         <Route path="/chat" element={<ChatPage user={user}/>} errorElement={<ErrorPage />} />
       </Routes>

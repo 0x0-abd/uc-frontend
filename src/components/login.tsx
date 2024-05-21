@@ -54,7 +54,7 @@ export function LoginForm({ setUser }: { setUser: (object: LoggedInUserData) => 
     try {
       const response = await axios.post(LOGIN_URL, values, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         withCredentials: true
       })
@@ -71,7 +71,7 @@ export function LoginForm({ setUser }: { setUser: (object: LoggedInUserData) => 
       }
     } catch (e: any) {
       // console.log(e?.response?.data)
-      setError(e.response.data.message)
+      setError(e.response?.data?.message)
       setTimeout(() => {setError(undefined)}, 3000 )
     }
     setIsLogging(false)

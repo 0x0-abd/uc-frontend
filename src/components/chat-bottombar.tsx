@@ -81,7 +81,7 @@ export default function ChatBottombar({
             <Popover>
               <PopoverTrigger asChild>
               <Link
-            to="/"
+            to="/chat"
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
               "h-9 w-9",
@@ -109,7 +109,7 @@ export default function ChatBottombar({
                  {BottombarIcons.map((icon, index) => (
                    <Link
                      key={index}
-                     to="/"
+                     to="/chat"
                      className={cn(
                        buttonVariants({ variant: "ghost", size: "icon" }),
                        "h-9 w-9",
@@ -122,7 +122,7 @@ export default function ChatBottombar({
                </div>
                ) : (
                 <Link 
-                to="/"
+                to="/chat"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
                   "h-9 w-9",
