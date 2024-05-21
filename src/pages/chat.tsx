@@ -15,10 +15,10 @@ export function ChatPage({user} : {user: LoggedInUserData | undefined}) {
         const getMessages = async ()=> {
             try {
                 const response = await axios.get(CHAT_URL, {withCredentials: true})
-                // console.log(response)
+                 console.log(response)
                 setMessages(response.data)
-                if(response.data?.message === "Invalid token" || response.data?.message ===  "No token provided!") 
-                    setLandingIntro(prev => "Could not verify the account, please login again")
+                // if(response.data?.message === "Invalid token" || response.data?.message ===  "No token provided!") 
+                //     setLandingIntro(prev => "Could not verify the account, please login again")
             } catch(e) {
                 // console.log(e)
                 setLandingIntro(prev => "Could not verify the account, please login again")
