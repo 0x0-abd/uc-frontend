@@ -1,4 +1,4 @@
-import { Button } from "./ui/button"
+import { Button, buttonVariants } from "./ui/button"
 import {
   Card,
   CardContent,
@@ -24,6 +24,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
+import getGoogleOAuthURL from "../lib/getGoogleUrl"
 
 const LOGIN_URL = '/auth/login'
 
@@ -54,7 +55,7 @@ export function LoginForm({ setUser }: { setUser: (object: LoggedInUserData) => 
     try {
       const response = await axios.post(LOGIN_URL, values, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         withCredentials: true
       })
@@ -71,7 +72,7 @@ export function LoginForm({ setUser }: { setUser: (object: LoggedInUserData) => 
       }
     } catch (e: any) {
       // console.log(e?.response?.data)
-      setError(e.response?.data?.message)
+      setError(e.response.data.message)
       setTimeout(() => {setError(undefined)}, 3000 )
     }
     setIsLogging(false)
@@ -123,6 +124,11 @@ export function LoginForm({ setUser }: { setUser: (object: LoggedInUserData) => 
             />
             <Button type="submit" className="w-full" disabled={isLogging}>Login</Button>
             { error && <FormDescription className="text-red-500 text-md">{error}</FormDescription>}
+            {/* <a href={getGoogleOAuthURL()}>
+              <Button className="w-full" disabled={isLogging}>Google</Button>
+              Google
+            </a> */}
+            <Link className={buttonVariants({ variant: "outline", className:"w-full" })} to={getGoogleOAuthURL()} >Login with Google</Link>
           </form>
         </Form>
       </CardContent>

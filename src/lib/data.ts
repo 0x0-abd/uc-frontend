@@ -108,6 +108,7 @@ export interface Message {
     role: string,
     message: string;
     time: string;
+    imageId?: string;
 }
 
 const loggedInUserData = {
@@ -122,6 +123,7 @@ export interface MessageWithoutID {
     username: string;
     role: string;
     message: string;
+    imageId?: string;
 };
 
 export type LoggedInUserData = (typeof loggedInUserData);

@@ -32,12 +32,12 @@ export function Navbar({ user, setUser }: { user: LoggedInUserData | undefined, 
     } catch (e) {
       console.log(e)
     }
-    setUser(undefined)
+    setUser()
     navigate("/")
   }
 
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 z-50 md:px-6">
+    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
           to="/"
@@ -53,10 +53,10 @@ export function Navbar({ user, setUser }: { user: LoggedInUserData | undefined, 
           ChatRoom
         </Link>
         <Link
-          to="/"
+          to="/profile"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          About
+          Profile
         </Link>
         {/* <a
             href="#"

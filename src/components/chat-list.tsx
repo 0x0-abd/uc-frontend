@@ -24,7 +24,24 @@ export function ChatList({
       messagesContainerRef.current.scrollTop =
         messagesContainerRef.current.scrollHeight;
     }
+    const images = messagesContainerRef.current?.querySelectorAll('img');
+    images?.forEach((img) => {
+      img.addEventListener('load', handleImageLoad);
+    });
+
+    return () => {
+      images?.forEach((img) => {
+        img.removeEventListener('load', handleImageLoad);
+      });
+    };
   }, [messages]);
+
+  const handleImageLoad = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  };
 
   function formatDate(dateString: string) {
     const date = new Date(dateString);
@@ -75,6 +92,10 @@ export function ChatList({
                   )} */}
               <div className=" bg-accent py-1 px-2 rounded-md max-w-xs mx-4 lg:max-w-md">
                 <p className="w-full text-primary">{message.name} <span className="float-right ml-2 text-muted-foreground">{message.username}</span></p>
+                {message.imageId && (
+                  <img src={message.imageId} className=" max-h-96 rounded-md py-1 px-1" alt=""/>
+                  // <ImageComponent src={message.imageId} />
+                )}
                 <p className="bg-accent">{message.message}</p>
                 <p className="float-right text-muted-foreground text-xs">{formatDate(message.time)}</p>
               </div>

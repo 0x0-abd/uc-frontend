@@ -31,6 +31,7 @@ const formSchema = z.object({
     message: "First Name cannot be empty",
   }),
   lastname: z.string().trim(),
+  email: z.string().min(1, {message:"Email required."}).email("This is not a valid email."),
   username: z.string().trim().min(4, {
     message: "Username must be at least 4 characters.",
   }),
@@ -60,7 +61,8 @@ export function RegisterForm({ setUser }: { setUser: (object: LoggedInUserData) 
       const response = await axios.post(REG_URL, {
         username: values.username,
         password: values.password,
-        name: `${values.firstname} ${values.lastname}`
+        name: `${values.firstname} ${values.lastname}`,
+        email: values.email
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -144,6 +146,19 @@ export function RegisterForm({ setUser }: { setUser: (object: LoggedInUserData) 
                   <FormDescription>
                     This is your username.
                   </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Email" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

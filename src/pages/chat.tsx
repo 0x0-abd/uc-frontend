@@ -15,10 +15,8 @@ export function ChatPage({user} : {user: LoggedInUserData | undefined}) {
         const getMessages = async ()=> {
             try {
                 const response = await axios.get(CHAT_URL, {withCredentials: true})
-                //  console.log(response)
+                // console.log(response)
                 setMessages(response.data)
-                // if(response.data?.message === "Invalid token" || response.data?.message ===  "No token provided!") 
-                //     setLandingIntro(prev => "Could not verify the account, please login again")
             } catch(e) {
                 // console.log(e)
                 setLandingIntro(prev => "Could not verify the account, please login again")
@@ -27,7 +25,6 @@ export function ChatPage({user} : {user: LoggedInUserData | undefined}) {
         getMessages();
     }, [])
     useEffect(() => {
-        // const socket = io('http://localhost:3001/');
         const socket = io('https://uc-backend-pqfj.onrender.com/');
         socket.on('message', (data) => {
             // setWelcome(data);
@@ -52,7 +49,6 @@ export function ChatPage({user} : {user: LoggedInUserData | undefined}) {
 
     const sendMessage = async (message: MessageWithoutID) => {
         const socket = io('https://uc-backend-pqfj.onrender.com/');
-        // const socket = io('http://localhost:3001/');
         // console.log("socket msg sent")
         socket.emit('send_message', message)
     }
