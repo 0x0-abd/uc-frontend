@@ -104,10 +104,10 @@ export function Navbar({ user, setUser }: { user: LoggedInUserData | undefined, 
               ChatRoom
             </Link>
             <Link
-              to="/"
+              to="/profile"
               className="text-muted-foreground hover:text-foreground"
             >
-              About
+              Profile
             </Link>
             {/* <a
                 href="#"
